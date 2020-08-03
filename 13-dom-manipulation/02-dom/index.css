@@ -1,0 +1,23 @@
+/* Style header */
+h1 {
+  color: purple;
+  font-size: 60px;
+}
+
+/* Style bear-photo */
+#bear-photo {
+  width: 250px;
+}
+
+/* Style lis */
+.special {
+  font-size: 30px;
+  color: teal;
+  border: 1px solid teal;
+}
+
+/* Style input */
+input[type='password'] {
+  width: 50px;
+  height: 100px;
+}
