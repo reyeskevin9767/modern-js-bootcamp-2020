@@ -15,4 +15,16 @@ h1 {
   color: teal;
   border: 1px solid teal;
 }
+
+/* Style lis with todo */
+.todo {
+  font-size: 30px;
+  color: olive;
+}
+
+/* Style added to todo*/
+.done {
+  color: gray;
+  text-decoration: line-through;
+  opacity: 50%;
 }
