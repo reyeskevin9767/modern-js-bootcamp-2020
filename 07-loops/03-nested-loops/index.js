@@ -6,10 +6,47 @@ for (let i = 1; i <= 10; i++) {
   }
 }
 
+// Results
+// OUTER LOOP 1
+//   INNER LOOP 10
+//   INNER LOOP 8
+//   INNER LOOP 6
+//   INNER LOOP 4
+//   INNER LOOP 2
+//   INNER LOOP 0
+// OUTER LOOP 2
+//   INNER LOOP 10
+//   INNER LOOP 8
+//   INNER LOOP 6
+//   INNER LOOP 4
+//   INNER LOOP 2
+//   INNER LOOP 0
+// ...
+// ...
+// ...
+
 for (let i = 0; i <= 5; i++) {
   console.log('Hi ');
   for (let j = 0; j <= 5; j++) console.log('World');
 }
+
+// Results
+// Hi
+// World
+// World
+// World
+// World
+// World
+// World
+// Hi
+// World
+// World
+// World
+// World
+// World
+// World
+//...
+//...
 
 //* Loop Through Nested Loops With Nested For Loops
 const gameBoard = [
@@ -59,6 +96,6 @@ for (let i = 0; i < gameBoardLengthTwo; i++) {
 
 average = totalScoreTwo / allNums;
 
-console.log(totalScoreTwo);
-console.log(allNums);
-console.log(average);
+console.log(totalScoreTwo); // 310
+console.log(allNums); // 18
+console.log(average); // 17.22222222222222

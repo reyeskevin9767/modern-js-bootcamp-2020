@@ -1,79 +1,67 @@
-//* Write a getCard() function which returns a random playing card object, like:
-//*  		{
-//*  			value: 'K'
-//*  			suit: 'clubs'
-//*  		}
-//*  Pick a random value from:
-//* ----2,3,4,5,6,7,8,9,10,J,Q,K,A
-//* Pick a random suit from:
-//* ----clubs,spades, hearts, diamonds
-//* Return both in an object
-
-//* My Solution
-function getRandom(arr) {
-  let randNum = Math.round(Math.random() * arr.length);
-  return arr[randNum];
+//*Function accepts another function as an argument
+function callThreeTimes(f) {
+  f();
+  f();
+  f();
 }
 
-function getCard() {
-  const randomValue = [
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    'J',
-    'Q',
-    'K',
-    'A',
-  ];
-  const randomSuit = ['clubs', 'spades', 'hearts', 'diamonds'];
-
-  let newCardValue = getRandom(randomValue);
-  let newSuitValue = getRandom(randomSuit);
-
-  return {
-    value: newCardValue,
-    suit: newSuitValue,
-  };
+//* Function console.logs string
+function cry() {
+  console.log('I am sad');
 }
 
-console.log(getCard());
-console.log(getCard());
-console.log(getCard());
+callThreeTimes(cry);
 
-//* Solution #1
-function pick(arr) {
-  //* return random element from arr
-  const idx = Math.floor(Math.random() * arr.length);
-  return arr[idx];
+// Results
+// I am sad
+// I am sad
+// I am sad
+
+//* More effective is to call function with for loop
+function rage() {
+  console.log('I HATE EVERYTHING!');
 }
 
-function getCardTwo() {
-  const values = [
-    '1',
-    '2',
-    '3',
-    '4',
-    '5',
-    '6',
-    '7',
-    '8',
-    '9',
-    '10',
-    'J',
-    'Q',
-    'K',
-    'A',
-  ];
-  const suits = ['clubs', 'spades', 'hearts', 'diamonds'];
-  return { value: pick(values), suit: pick(suits) };
+//* Function takes two arguments, a function and a number
+//* Call func (a function), a num (number) of times
+function repeatNTimes(func, num) {
+  for (let i = 0; i < num; i++) {
+    func();
+  }
 }
 
-console.log(getCardTwo());
-console.log(getCardTwo());
-console.log(getCardTwo());
+repeatNTimes(rage, 5);
+
+// Results
+// I HATE EVERYTHING!
+// I HATE EVERYTHING!
+// I HATE EVERYTHING!
+// I HATE EVERYTHING!
+// I HATE EVERYTHING!
+
+//* Function console.logs string
+const callMe = function () {
+  console.log('Hi');
+};
+
+//* Function console.logs string
+const stopCallingMe = function () {
+  console.log('No');
+};
+
+//* Accepts 2 functions as arguments
+function pickOne(f1, f2) {
+  let rand = Math.random();
+
+  if (rand < 0.5) {
+    f1();
+  } else {
+    f2();
+  }
+}
+
+pickOne(callMe, stopCallingMe);
+
+// Result
+// Hi
+// No

@@ -1,21 +1,19 @@
 //* Null
 let loggedInUser = null;
-console.log(loggedInUser);
+console.log(loggedInUser); // value is explicitly nothing
 loggedInUser = 'Alan Rickman';
-console.log(loggedInUser);
+console.log(loggedInUser); // Alan Rickman
 
 let newAnimal = null;
-console.log(newAnimal);
+console.log(newAnimal); // value is explicitly nothing
 newAnimal = 'Turtle';
-console.log(newAnimal);
+console.log(newAnimal); // Turtle
 
 //* Undefined
 let pickles;
-console.log(pickles);
+console.log(pickles); // undefined
 pickles = 'are very gross';
-console.log(pickles);
+console.log(pickles); // are very gross
 
 let food = 'tacos';
-console.log(food[7]);
-
-console.log(isTheMoonCheese);
+console.log(food[7]); // undefined

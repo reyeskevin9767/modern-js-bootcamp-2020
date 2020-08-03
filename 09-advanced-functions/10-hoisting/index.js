@@ -1,17 +1,17 @@
 //* Variables declared with var are hoisted
-console.log(animals);   
+console.log(animals); // Tapir
 var animals = 'Tapir';
-console.log(animals);
+console.log(animals); // Tapir
 
 //* Variables declared with let & const are not hoisted
 const shrimp = 'Harlequin Shrimp';
-console.log(shrimp);
+console.log(shrimp); // Harlequin Shrimp
 
 //* Function statements are hoisted
 howl();
 
-function howl(){
-	console.log('Awoooooo');
+function howl() {
+  console.log('Awoooooo');
 }
 
 //* function expressions are...kind of hoisted.
@@ -19,6 +19,6 @@ function howl(){
 
 //* hoot();
 
-var hoot = function(){
-	console.log('HOOOOO HOOOO');
-}
+var hoot = function () {
+  console.log('HOOOOO HOOOO');
+};

@@ -1,6 +1,7 @@
 //* Switch Conditional
 let emoji = 'happy face';
 
+//* Switch between cases until emoji is matched
 switch (emoji) {
   case 'sad face':
   case 'happy face':
@@ -15,6 +16,7 @@ switch (emoji) {
 
 let weekDay = 'Saturday';
 
+//* Switch between cases until weekDay is matched
 switch (weekDay) {
   case 'Friday':
   case 'Saturday':

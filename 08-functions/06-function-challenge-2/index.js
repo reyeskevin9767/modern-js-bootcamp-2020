@@ -1,6 +1,6 @@
-//* Write a function to find the average value in an array of numbers
-//* avg([0,50]) //25
-//* avg([75,76,80,95,100]) //85.2
+// Write a function to find the average value in an array of numbers
+// avg([0,50]) //25
+// avg([75,76,80,95,100]) //85.2
 
 const nums = [34, 43, 43, 56, 78, 90, 87, 3, 4, 56];
 
@@ -16,7 +16,7 @@ function findAvg(arr) {
   return average;
 }
 
-console.log(findAvg(nums));
+console.log(findAvg(nums)); // 49.4
 
 //* Solution #1
 function avg(arr) {
@@ -28,4 +28,4 @@ function avg(arr) {
   return total / arr.length;
 }
 
-console.log(avg(nums)); //49.4
+console.log(avg(nums)); // 49.4

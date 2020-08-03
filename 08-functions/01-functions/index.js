@@ -1,5 +1,4 @@
 //* Step 1: Define The Function
-
 //* Function that once called, will run entire inner content
 function grumpus() {
   console.log('ugh...you again...');
@@ -8,7 +7,7 @@ function grumpus() {
 }
 
 //* Step 2: Call The Function
-grumpus();
+grumpus(); // ugh...you again...FOR THE LAST TIME...LEAVE ME ALONE!!!
 grumpus();
 grumpus();
 
@@ -34,3 +33,10 @@ function throwDice() {
 
 //* Call Function
 throwDice();
+
+// One Result
+// Rolled: 4
+// Rolled: 5
+// Rolled: 4
+// Rolled: 2
+// Rolled: 6

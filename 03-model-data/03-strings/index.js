@@ -2,19 +2,19 @@
 let firstName = 'Ziggy';
 let lastName = 'Micky';
 
-console.log(firstName);
-console.log(lastName);
+console.log(firstName); // Ziggy
+console.log(lastName); // Micky
 
 //* Double Quote
 let msg = 'Please Send Mangos';
 let email = 'Hi From France...';
 
-console.log(msg);
-console.log(email);
+console.log(msg); // Please Send Mangos
+console.log(email); // Hi From France...
 
 //* Single/Double Quotes
 let animal = "Octopus's Hat";
 let dog = "Rob's back is loud";
 
-console.log(animal);
-console.log(dog);
+console.log(animal); // Octopus's Hat
+console.log(dog); // Rob's back is loud

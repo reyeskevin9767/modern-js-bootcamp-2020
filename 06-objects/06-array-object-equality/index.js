@@ -3,8 +3,8 @@ let mystery = [4, 5, 6, 7];
 let moreNums = nums;
 
 //* Similiar to arrays, objects reference memory
-console.log(nums === mystery);
-console.log(nums === moreNums);
+console.log(nums === mystery); // false
+console.log(nums === moreNums); // true
 
 //* An empty array references a different memory
 const user = {

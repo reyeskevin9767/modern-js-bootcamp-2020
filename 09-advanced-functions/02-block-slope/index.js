@@ -2,10 +2,10 @@
 let bird = 'mandarin duck';
 
 function birdWatch() {
-    //* These variables are in the function scope
-    let bird = 'golden pheasant';
-    console.log(bird);
+  //* These variables are in the function scope
+  let bird = 'golden pheasant';
+  console.log(bird); // "golden pheasant"
 }
 
-birdWatch();
-console.log(bird);
+birdWatch(); // golden pheasant
+console.log(bird); // golden pheasant

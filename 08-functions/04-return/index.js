@@ -1,16 +1,16 @@
 //* Function adds two numbers
 function add(x, y) {
   return x + y;
-  console.log('All Done'); //* Does Not Run
+  console.log('All Done'); // Does Not Run
 }
 
 const sum = add(10, 16);
-sum;
+sum; // 26
 
 const answer = add(100, 200);
-answer;
+answer; // 300
 
-//* Example
+//* Another Example
 const color = ['red', 'blue', 'yellow', 'orange', 'green'];
 
 //* Function to find if the color purple is in array
@@ -22,7 +22,7 @@ function isPurple(color) {
   }
 }
 
-console.log(isPurple('red'));
+console.log(isPurple('red')); // false
 
 //* Shorten version since else is no longer need
 function isPurpleTwo(color) {
@@ -32,14 +32,14 @@ function isPurpleTwo(color) {
   return false;
 }
 
-console.log(isPurpleTwo('purple'));
+console.log(isPurpleTwo('purple')); // true
 
 //* Shorter version where if is no longer need
 function isPurpleThree(color) {
   return color.toLowerCase() === 'purple';
 }
 
-console.log(isPurpleThree('white'));
+console.log(isPurpleThree('white')); // false
 
 //* A Version that uses a for...of loop to find the colors purple/magenta
 function containsPurple(arr) {
@@ -51,4 +51,4 @@ function containsPurple(arr) {
   return false;
 }
 
-console.log(containsPurple(color));
+console.log(containsPurple(color)); // false

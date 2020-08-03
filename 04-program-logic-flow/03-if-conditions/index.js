@@ -1,6 +1,7 @@
 //* If Condition
 let rating = 3;
 
+//* Check to see if ratingThree is 3
 if (rating === 3) {
   console.log('You Are A SuperStar!');
 }
@@ -17,8 +18,9 @@ if (ratingTwo === 3) {
 }
 
 //* Else Conditional
-
 let ratingThree = -99;
+
+//* Check to see if ratingThree is 3
 if (ratingThree === 3) {
   console.log('You Are A Superstar!');
 } else if (ratingThree === 2) {
@@ -32,6 +34,7 @@ if (ratingThree === 3) {
 //* Nesting Conditions
 let password = 'cat dog';
 
+//* Check to see if ratingThree is 3
 if (password.length >= 6) {
   if (password.indexOf(' ') !== -1) {
     console.log('Password cannot include spaces');

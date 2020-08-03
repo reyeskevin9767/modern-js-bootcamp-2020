@@ -1,18 +1,17 @@
-//* Write a isValidPassword function
-//* It accepts 2 arguments: password and username
-//* Password must:
-//*	- be at least 8 characters
-//*  - cannot contain spaces
-//*  - cannot contain the username
-//* If all requirements are met, return true.
-//* Otherwise: false
+// Write a isValidPassword function
+// It accepts 2 arguments: password and username
+// Password must:
+//	- be at least 8 characters
+//  - cannot contain spaces
+//  - cannot contain the username
+// If all requirements are met, return true.
+// Otherwise: false
 
-//* isValidPassword('89Fjj1nms', 'dogLuvr');  //true
-//* isValidPassword('dogLuvr123!', 'dogLuvr') //false
-//* isValidPassword('hello1', 'dogLuvr') //false
+// isValidPassword('89Fjj1nms', 'dogLuvr');  // true
+// isValidPassword('dogLuvr123!', 'dogLuvr') // false
+// isValidPassword('hello1', 'dogLuvr') // false
 
 //* My Solution
-
 //* Function checks to see if password is valid
 function isValidPassword(password, username) {
   if (password.length >= 8) {
@@ -23,8 +22,8 @@ function isValidPassword(password, username) {
   return false;
 }
 
-isValidPassword('89Fjj1nms', 'dogLuvr');
-isValidPassword('89Fj j1nms', 'dogLuvr');
+isValidPassword('89Fjj1nms', 'dogLuvr'); // true
+isValidPassword('89Fj j1nms', 'dogLuvr'); // false
 
 //* Short Version #1
 function isValidPasswordTwo(password, username) {
@@ -40,8 +39,8 @@ function isValidPasswordTwo(password, username) {
   return true;
 }
 
-console.log(isValidPasswordTwo('efewfewf434', 'dogLuvr'));
-console.log(isValidPasswordTwo('89Fjfddfdsj1nms', 'j1nms'));
+console.log(isValidPasswordTwo('efewfewf434', 'dogLuvr')); // true
+console.log(isValidPasswordTwo('89Fjfddfdsj1nms', 'j1nms')); // false
 
 //* Short Version #2
 function isValidPasswordThree(password, username) {
@@ -55,8 +54,8 @@ function isValidPasswordThree(password, username) {
   return true;
 }
 
-console.log(isValidPasswordThree('e2efd23dfd', 'ddfadsf'));
-console.log(isValidPasswordThree('89Fjfd d1nms', 'j1nms'));
+console.log(isValidPasswordThree('e2efd23dfd', 'ddfadsf')); // true
+console.log(isValidPasswordThree('89Fjfd d1nms', 'j1nms')); // false
 
 //* Short Version #3
 function isValidPasswordFour(password, username) {
@@ -67,8 +66,8 @@ function isValidPasswordFour(password, username) {
   return true;
 }
 
-console.log(isValidPasswordFour('LoveWinder', 'colllerer'));
-console.log(isValidPasswordFour('adsf4434fdfe', 'ads'));
+console.log(isValidPasswordFour('LoveWinder', 'colllerer')); // true
+console.log(isValidPasswordFour('adsf4434fdfe', 'ads')); // false
 
 //* Short Version #4
 function isValidPasswordFive(password, username) {
@@ -79,8 +78,8 @@ function isValidPasswordFive(password, username) {
   return false;
 }
 
-console.log(isValidPasswordFive('LoveWinderds', 'colllefdf'));
-console.log(isValidPasswordFive('adsdvdaa3 4fdfe', 'adsdfs'));
+console.log(isValidPasswordFive('LoveWinderds', 'colllefdf')); // true
+console.log(isValidPasswordFive('adsdvdaa3 4fdfe', 'adsdfs')); // false
 
 //* Short Version #5
 function isValidPasswordSix(password, username) {
@@ -90,5 +89,5 @@ function isValidPasswordSix(password, username) {
   return !tooShort && !hasSpace && !tooSimilar;
 }
 
-console.log(isValidPasswordSix('Lds323oveWinderds', 'ccdcsgfh'));
-console.log(isValidPasswordSix('adsdvLove4fdfe', 'Love'));
+console.log(isValidPasswordSix('Lds323oveWinderds', 'ccdcsgfh')); // true
+console.log(isValidPasswordSix('adsdvLove4fdfe', 'Love')); // false

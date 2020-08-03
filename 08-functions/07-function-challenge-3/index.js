@@ -1,13 +1,13 @@
-//* Write a getCard() function which returns a random playing card object, like:
-//*  		{
-//*  			value: 'K'
-//*  			suit: 'clubs'
-//*  		}
-//*  Pick a random value from:
-//* ----2,3,4,5,6,7,8,9,10,J,Q,K,A
-//* Pick a random suit from:
-//* ----clubs,spades, hearts, diamonds
-//* Return both in an object
+// Write a getCard() function which returns a random playing card object, like:
+//  		{
+//  			value: 'K'
+//  			suit: 'clubs'
+//  		}
+//  Pick a random value from:
+// ----2,3,4,5,6,7,8,9,10,J,Q,K,A
+// Pick a random suit from:
+// ----clubs,spades, hearts, diamonds
+// Return both in an object
 
 //* My Solution
 function getRandom(arr) {
@@ -46,6 +46,11 @@ console.log(getCard());
 console.log(getCard());
 console.log(getCard());
 
+// One Result
+// { value: 'J', suit: 'clubs' }
+// { value: 'A', suit: 'hearts' }
+// { value: '6', suit: 'hearts' }
+
 //* Solution #1
 function pick(arr) {
   //* return random element from arr
@@ -77,3 +82,8 @@ function getCardTwo() {
 console.log(getCardTwo());
 console.log(getCardTwo());
 console.log(getCardTwo());
+
+// One Result
+// { value: 'J', suit: 'clubs' }
+// { value: 'A', suit: 'hearts' }
+// { value: '6', suit: 'hearts' }

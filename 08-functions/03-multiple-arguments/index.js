@@ -9,6 +9,6 @@ function findLargest(x, y) {
   }
 }
 
-findLargest(4, 5);
-findLargest(10, 10);
-findLargest(6, 3);
+findLargest(4, 5); // 5 is larger!
+findLargest(10, 10); // 10 and 10 are equal!
+findLargest(6, 3); // 6 is larger!

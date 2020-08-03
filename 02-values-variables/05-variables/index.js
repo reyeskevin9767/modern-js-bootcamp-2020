@@ -16,18 +16,18 @@ let subStript = '2';
 let oxygen = 'O';
 
 //* Recalling Variables
-console.log(ducks + roosters); //* 6
-console.log(hydrogen + subStript + oxygen); //* H2O
+console.log(ducks + roosters); // 6
+console.log(hydrogen + subStript + oxygen); // H2O
 
 //* Update Values
 hens - 1;
-console.log(hens); //* 4
+console.log(hens); // 4
 
 hens2 = hens2 - 1;
-console.log(hens2); //* 3
+console.log(hens2); // 3
 
 watchDogs - 20;
-console.log(watchDogs); //* 42
+console.log(watchDogs); // 42
 
 watchDogs2 = -20;
-console.log(watchDogs2); //* 22
+console.log(watchDogs2); // 22

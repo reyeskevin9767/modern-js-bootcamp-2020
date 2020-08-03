@@ -2,7 +2,7 @@
 const myEggs = ['brown', 'yellow'];
 
 myEggs.push('purple');
-console.log(myEggs);
+console.log(myEggs); // [ 'brown', 'yellow', 'purple' ]
 
 myEggs[0] = 'green';
-console.log(myEggs);
+console.log(myEggs); // [ 'brown', 'yellow', 'purple' ]

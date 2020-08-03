@@ -15,6 +15,11 @@ for (let i = 0; i < magicSquare.length; i++) {
   console.log(`${row} summed to ${sum}`);
 }
 
+// Results
+// 2,7,6 summed to 15
+// 9,5,1 summed to 15
+// 4,3,8 summed to 15
+
 //* For...Of Loop Version
 for (let row of magicSquare) {
   let sum = 0;
@@ -26,8 +31,12 @@ for (let row of magicSquare) {
   console.log(`${row} summed to ${sum}`);
 }
 
-//* Need Indices, Use Regular For Loop
+// Results
+// 2,7,6 summed to 15
+// 9,5,1 summed to 15
+// 4,3,8 summed to 15
 
+//* Need Indices, Use Regular For Loop
 const words = ['mail', 'milk', 'bath', 'black'];
 const wordsTwo = ['box', 'shake', 'tub', 'berry'];
 
@@ -35,3 +44,9 @@ const wordsTwo = ['box', 'shake', 'tub', 'berry'];
 for (let i = 0; i < words.length; i++) {
   console.log(`${words[i]}${wordsTwo[i]}`);
 }
+
+// Results
+// mailbox
+// milkshake
+// bathtub
+// blackberry

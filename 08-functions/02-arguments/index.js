@@ -3,8 +3,8 @@ function greet(nickname) {
   console.log(`Hi ${nickname}`);
 }
 
-greet('David');
-greet('Sarah');
+greet('David'); // Hi David
+greet('Sarah'); // Hi Sarah
 
 //* Roll Determine By Input
 function rollDie() {
@@ -20,3 +20,13 @@ function throwDice(numRolls) {
 
 throwDice(3);
 throwDice(5);
+
+// Results
+// Rolled: 3
+// Rolled: 3
+// Rolled: 2
+// Rolled: 5
+// Rolled: 2
+// Rolled: 6
+// Rolled: 6
+// Rolled: 6

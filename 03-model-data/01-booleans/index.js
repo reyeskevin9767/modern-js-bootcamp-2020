@@ -1,18 +1,18 @@
 //* Booleans
 let isLoggedIn = true;
-console.log(isLoggedIn);
+console.log(isLoggedIn); // true
 
 let gameOver = false;
-console.log(gameOver);
+console.log(gameOver); // false
 
 let notEnemy = true;
-console.log(notEnemy);
+console.log(notEnemy); // true
 
 const isWaterWet = true;
-console.log(isWaterWet);
+console.log(isWaterWet); // true
 
 const isTheSkyBlue = false;
-console.log(isTheSkyBlue);
+console.log(isTheSkyBlue); // false
 
 const isTheMoonCheese = true;
-console.log(isTheMoonCheese);
+console.log(isTheMoonCheese); // true
