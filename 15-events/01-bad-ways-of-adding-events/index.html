@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Two Ways of not adding Event Listeners</title>
+  </head>
+  <body>
+    <button onmouseover="alert('You Clicked ME')">Click Me</button>
+    <button onclick="alert('You Clicked ME TWO')">Click Me</button>
+
+    <button id="clicker">Clicker</button>
+
+    <form action="">
+      <input onclick="console.log('Hello')" type="range" min="10" max="50" />
+    </form>
+    <script src="index.js"></script>
+  </body>
+</html>

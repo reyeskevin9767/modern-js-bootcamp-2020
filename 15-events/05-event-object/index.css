@@ -1,0 +1,16 @@
+/* Style boxes */
+#boxes {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* Style box */
+.box {
+ width: 200px;
+ height: 200px;
+}
+
+/* Style h1 */
+h1 {
+  text-align: center;
+}
