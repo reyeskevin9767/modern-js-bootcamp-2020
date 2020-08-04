@@ -1,0 +1,30 @@
+//* Gets to hex value of color
+function hex(r, g, b) {
+  return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+}
+
+//* Gets the rgb of color
+function rgb(r, g, b) {
+  return `rgb(${r}, ${g}, ${b})`;
+}
+
+//* Factory Function
+function makeColor(r, g, b) {
+  const color = {};
+  color.r = r;
+  color.g = g;
+  color.b = g;
+  color.rgb = function () {
+    const { r, g, b } = this;
+    return `rgb(${r}, ${g}, ${b})`;
+  };
+  color.hex = function () {
+    const { r, g, b } = this;
+    return '#' + ((1 << 24) + (r << 16) + (g << 8) + b).toString(16).slice(1);
+  };
+  return color;
+}
+
+const firstColor = makeColor(35, 115, 150);
+console.log(firstColor.rgb());
+console.log(firstColor.hex());
