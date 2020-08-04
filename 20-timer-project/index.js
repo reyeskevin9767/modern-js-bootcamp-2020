@@ -7,7 +7,8 @@ const perimeter = circle.getAttribute('r') * 2 * Math.PI;
 circle.setAttribute('stroke-dasharray', perimeter);
 
 let duration;
-//Create New Timer
+
+//* Create New Timer
 const timer = new Timer(durationInput, startButton, pauseButton, {
   onStart(totalDuration) {
     duration = totalDuration;

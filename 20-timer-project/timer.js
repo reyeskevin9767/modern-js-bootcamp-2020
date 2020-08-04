@@ -1,4 +1,3 @@
-// Class Timer
 class Timer {
   constructor(durationInput, startButton, pauseButton, callbacks) {
     this.durationInput = durationInput;
@@ -17,7 +16,7 @@ class Timer {
     this.pauseButton.addEventListener('click', this.pause);
   }
 
-  // Start Timer
+  //* Start Timer
   start = () => {
     // Check if onComplete was called
     if (this.onStart) {
