@@ -1,25 +1,24 @@
+//* Functions that don't change
 const autoCompleteConfig = {
+  //* Render the movie's basic info
   renderOption(movie) {
-    const imgSrc = movie.Poster === 'N/A' ? ' ' : movie.Poster;
-    return `
-        <img src="${imgSrc}" />
-        ${movie.Title} (${movie.Year})
-        `;
+    const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
+    return `<img src="${imgSrc}" /> ${movie.Title} (${movie.Year})`;
   },
   inputValue(movie) {
     return movie.Title;
   },
+
+  //* Fetch from the api, basic info of movie
   async fetchData(searchTerm) {
-    // Need to wait for response
-    const response = await axios.get('https://www.omdbapi.com/', {
+    const response = await axios.get('http://www.omdbapi.com/', {
       params: {
-        apikey: '2b644ca2',
+        apikey: 'e2e8e539',
         s: searchTerm,
       },
     });
 
-    // If movie doesn't exist, return empty array
-    if (!response.data.Search) {
+    if (response.data.Error) {
       return [];
     }
 
@@ -27,32 +26,43 @@ const autoCompleteConfig = {
   },
 };
 
+//* Customize left createAutoComplete
 createAutoComplete({
   ...autoCompleteConfig,
+
+  //* Assign div with class to root
   root: document.querySelector('#left-autocomplete'),
+
   onOptionSelect(movie) {
     document.querySelector('.tutorial').classList.add('is-hidden');
+
+    //* Send another request to api
     onMovieSelect(movie, document.querySelector('#left-summary'), 'left');
   },
 });
 
+//* Customize right createAutoComplete
 createAutoComplete({
   ...autoCompleteConfig,
+
+  //* Assign div with class to root
   root: document.querySelector('#right-autocomplete'),
+
   onOptionSelect(movie) {
     document.querySelector('.tutorial').classList.add('is-hidden');
+
+    //* Send another request to api
     onMovieSelect(movie, document.querySelector('#right-summary'), 'right');
   },
 });
 
 let leftMovie;
 let rightMovie;
-
-// Get more details about a single movie
+//* Fetch from the api, more details about the movie
 const onMovieSelect = async (movie, summaryElement, side) => {
-  const response = await axios.get('https://www.omdbapi.com/', {
+  const response = await axios.get('http://www.omdbapi.com/', {
     params: {
-      apikey: '2b644ca2',
+      apikey: 'e2e8e539',
       i: movie.imdbID,
     },
   });
@@ -70,6 +80,7 @@ const onMovieSelect = async (movie, summaryElement, side) => {
   }
 };
 
+//* Compare movies
 const runComparison = () => {
   const leftSideStats = document.querySelectorAll(
     '#left-summary .notification'
@@ -94,7 +105,7 @@ const runComparison = () => {
   });
 };
 
-// Shows All the movie's details
+//* Generate HTML for movie's details
 const movieTemplate = (movieDetail) => {
   const dollars = parseInt(
     movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, '')
@@ -102,6 +113,7 @@ const movieTemplate = (movieDetail) => {
   const metascore = parseInt(movieDetail.Metascore);
   const imdbRating = parseFloat(movieDetail.imdbRating);
   const imdbVotes = parseInt(movieDetail.imdbVotes.replace(/,/g, ''));
+
   const awards = movieDetail.Awards.split(' ').reduce((prev, word) => {
     const value = parseInt(word);
 
@@ -112,41 +124,45 @@ const movieTemplate = (movieDetail) => {
     }
   }, 0);
 
-  // Return all the movie's details in html
   return `
-        <article class="media">
-            <figure class="media-left">
-                <p class="image">
-                    <img src="${movieDetail.Poster}" />
-                </p>
-            </figure>
-            <div class="media-content">
-                <div class="content">
-                    <h1>${movieDetail.Title}</h1>
-                    <h4>${movieDetail.Genre}</h4>
-                    <p>${movieDetail.Plot}</p>
-                </div>
-            </div>
-        </article>
-        <article data-value=${awards} class="notification is-success">
-            <p class="title">${movieDetail.Awards}</p>
-            <p class="subtitle">Awards</p>
-        </article>
-        <article data-value=${dollars} class="notification is-success">
-            <p class="title">${movieDetail.BoxOffice}</p>
-            <p class="subtitle">Box Office</p>
-        </article>
-        <article data-value=${metascore} class="notification is-success">
-            <p class="title">${movieDetail.Metascore}</p>
-            <p class="subtitle">Metascore</p>
-        </article>
-        <article data-value=${imdbRating} class="notification is-success">
-            <p class="title">${movieDetail.imdbRating}</p>
-            <p class="subtitle">IMDB Rating</p>
-        </article>
-        <article data-value=${imdbVotes} class="notification is-success">
-            <p class="title">${movieDetail.imdbVotes}</p>
-            <p class="subtitle">IMDB Votes</p>
-        </article>
-    `;
+    <article class="media">
+      <figure class="media-left">
+        <p class="image">
+          <img src="${movieDetail.Poster}" />
+        </p>
+      </figure>
+      <div class="media-content">
+        <div class="content">
+          <h1>${movieDetail.Title}</h1>
+          <h4>${movieDetail.Genre}</h4>
+          <p>${movieDetail.Plot}</p>
+        </div>
+      </div>
+    </article>
+
+    <article data-value=${awards} class="notification is-primary">
+      <p class="title">${movieDetail.Awards}</p>
+      <p class="subtitle">Awards</p>
+    </article>
+
+    <article data-value=${dollars} class="notification is-primary">
+      <p class="title">${movieDetail.BoxOffice}</p>
+      <p class="subtitle">Box Office</p>
+    </article>
+
+    <article data-value=${metascore} class="notification is-primary">
+      <p class="title">${movieDetail.Metascore}</p>
+      <p class="subtitle">Metascore</p>
+    </article>
+
+    <article data-value=${imdbRating} class="notification is-primary">
+      <p class="title">${movieDetail.imdbRating}</p>
+      <p class="subtitle">IMDB Rating</p>
+    </article>
+
+    <article data-value=${imdbVotes} class="notification is-primary">
+      <p class="title">${movieDetail.imdbVotes}</p>
+      <p class="subtitle">IMDB Votes</p>
+    </article>
+  `;
 };

@@ -1,51 +1,45 @@
+//* Created createAutoComplete for useable
 const createAutoComplete = ({
   root,
   renderOption,
   onOptionSelect,
   inputValue,
-  fetchData,
+  fetchData
 }) => {
-  // Add into autocomplete
+  //* Generate HTML for dropdown menu
   root.innerHTML = `
     <label><b>Search</b></label>
-    <input class="input" />
-    <div class="dropdown">
-      <div class="dropdown-menu">
-        <div class="dropdown-content results"></div>
-      </div>
-    </div>
-    `;
+      <input class = "input" />
+        <div class="dropdown">
+          <div class="dropdown-menu">
+            <div class="dropdown-content results">
+            </div>
+          </div>
+        </div>
+`;
 
-  // Query Selectors
+  //* Query Selectors
   const input = root.querySelector('input');
   const dropdown = root.querySelector('.dropdown');
   const resultsWrapper = root.querySelector('.results');
 
-  // Each keypress sends a request to API
+  //* Use data from fetchData to create dropdown menu
   const onInput = async (event) => {
-    // Add the class 'is-active' to dropdown
-    dropdown.classList.add('is-active');
-
-    // Clear results
-    resultsWrapper.innerHTML = '';
-
-    // Take movie data and assign to movies
     const items = await fetchData(event.target.value);
 
-    // When no movies are in input
     if (!items.length) {
       dropdown.classList.remove('is-active');
       return;
     }
 
-    // Loop through movies
+    resultsWrapper.innerHTML = '';
+    dropdown.classList.add('is-active');
+
     for (let item of items) {
       const option = document.createElement('a');
 
-      // Add the class 'dropdown-item to archor tags
       option.classList.add('dropdown-item');
 
-      // Add movie's Poster and Title to archor tags
       option.innerHTML = renderOption(item);
 
       option.addEventListener('click', () => {
@@ -54,15 +48,14 @@ const createAutoComplete = ({
         onOptionSelect(item);
       });
 
-      // Append archor tags to div with results tag
       resultsWrapper.appendChild(option);
     }
   };
 
-  // Prevents each keypress from sending a request and only send after 1000 delay
-  input.addEventListener('input', debounce(onInput, 1000));
+  //* Event Listeners
+  input.addEventListener('input', debounce(onInput, 500));
 
-  // Closes dropdown
+  //* Closes dropdown menu
   document.addEventListener('click', (event) => {
     if (!root.contains(event.target)) {
       dropdown.classList.remove('is-active');
