@@ -1,44 +1,62 @@
+//* Engine - Transition from one state to another
+//* Render - Draw onto webpage
+//* Runner - Coordinate the Engine and World
+//* World - Snapshot of the world
+//* Bodies - Geometry in the world
+//* Events - Listen for things that occur inside world
 const { Engine, Render, Runner, World, Bodies, Body, Events } = Matter;
 
-const cellsHorizontal = 10;
-const cellsVertical = 15;
+const cellsHorizontal = 14;
+const cellsVertical = 10;
 const width = window.innerWidth;
 const height = window.innerHeight;
 
 const unitLengthX = width / cellsHorizontal;
 const unitLengthY = height / cellsVertical;
 
+//* Create New Engine
 const engine = Engine.create();
 engine.world.gravity.y = 0;
 const { world } = engine;
 
-// Creates a Canvas
+//* Creates a canvas
 const render = Render.create({
   element: document.body,
   engine: engine,
   options: {
     wireframes: false,
-    width,
-    height,
+    width: width,
+    height: height,
   },
 });
 
+//* Render all updates to webpage
 Render.run(render);
 Runner.run(Runner.create(), engine);
 
-// Walls
+//* Walls
 const walls = [
-  Bodies.rectangle(width / 2, 0, width, 2, { isStatic: true }),
-  Bodies.rectangle(width / 2, height, width, 2, { isStatic: true }),
-  Bodies.rectangle(0, height / 2, 2, height, { isStatic: true }),
-  Bodies.rectangle(width, height / 2, 2, height, { isStatic: true }),
+  Bodies.rectangle(width / 2, 0, width, 2, {
+    isStatic: true,
+  }),
+  Bodies.rectangle(width / 2, height, width, 2, {
+    isStatic: true,
+  }),
+  Bodies.rectangle(0, height / 2, 2, height, {
+    isStatic: true,
+  }),
+  Bodies.rectangle(width, height / 2, 2, height, {
+    isStatic: true,
+  }),
 ];
 
+//* Add Walls to the world
 World.add(world, walls);
 
-// Maze Generation
+//* Shuffle Array
 const shuffle = (arr) => {
   let counter = arr.length;
+
   while (counter > 0) {
     const index = Math.floor(Math.random() * counter);
 
@@ -52,32 +70,36 @@ const shuffle = (arr) => {
   return arr;
 };
 
+//* Maze Generation
 const grid = Array(cellsVertical)
   .fill(null)
   .map(() => Array(cellsHorizontal).fill(false));
 
+//* Vertical Lines
 const verticals = Array(cellsVertical)
   .fill(null)
   .map(() => Array(cellsHorizontal - 1).fill(false));
 
+//* Horizontal Lines
 const horizontals = Array(cellsVertical - 1)
   .fill(null)
   .map(() => Array(cellsHorizontal).fill(false));
 
+//* Random starting point
 const startRow = Math.floor(Math.random() * cellsVertical);
 const startColumn = Math.floor(Math.random() * cellsHorizontal);
 
+//* Go through each cell
 const stepThroughCell = (row, column) => {
-  // If visited the cell at [row, column], then return
-
+  // Check if the cell at [row, column] has been visited
   if (grid[row][column]) {
     return;
   }
 
-  // Mark this cell as being visited
+  // Mark cells that have been visited
   grid[row][column] = true;
 
-  // Assemble randomly-orderd list of neighbors
+  // Assemble randomly-ordered list of neighbors in four directions
   const neighbors = shuffle([
     [row - 1, column, 'up'],
     [row, column + 1, 'right'],
@@ -85,11 +107,10 @@ const stepThroughCell = (row, column) => {
     [row, column - 1, 'left'],
   ]);
 
-  // For each neighbor...
+  // For each neighbor, see if that neighbor is out of bounds
   for (let neighbor of neighbors) {
     const [nextRow, nextColumn, direction] = neighbor;
 
-    // See if that neighbor is out of bounds
     if (
       nextRow < 0 ||
       nextRow >= cellsVertical ||
@@ -98,7 +119,8 @@ const stepThroughCell = (row, column) => {
     ) {
       continue;
     }
-    // IF we have visited that neighbor, continue to next neighbor
+
+    // If neighbor has been visited, continue to next neighbor
     if (grid[nextRow][nextColumn]) {
       continue;
     }
@@ -113,13 +135,16 @@ const stepThroughCell = (row, column) => {
     } else if (direction === 'down') {
       horizontals[row][column] = true;
     }
-    // Visit that next cell
+
+    // Visit the next cell
     stepThroughCell(nextRow, nextColumn);
   }
 };
 
+//* Starting point to create maze
 stepThroughCell(startRow, startColumn);
 
+//* Draw horizontal walls
 horizontals.forEach((row, rowIndex) => {
   row.forEach((open, columnIndex) => {
     if (open) {
@@ -144,6 +169,7 @@ horizontals.forEach((row, rowIndex) => {
   });
 });
 
+//* Draw vertical walls
 verticals.forEach((row, rowIndex) => {
   row.forEach((open, columnIndex) => {
     if (open) {
@@ -168,7 +194,7 @@ verticals.forEach((row, rowIndex) => {
   });
 });
 
-// Goal
+//* Goal for player
 const goal = Bodies.rectangle(
   width - unitLengthX / 2,
   height - unitLengthY / 2,
@@ -185,7 +211,7 @@ const goal = Bodies.rectangle(
 
 World.add(world, goal);
 
-// Ball
+//* Ball(player)
 const ballRadius = Math.min(unitLengthX, unitLengthY) / 4;
 const ball = Bodies.circle(unitLengthX / 2, unitLengthY / 2, ballRadius, {
   label: 'ball',
@@ -193,26 +219,30 @@ const ball = Bodies.circle(unitLengthX / 2, unitLengthY / 2, ballRadius, {
     fillStyle: 'blue',
   },
 });
-
 World.add(world, ball);
 
+//* Event Listener to move the player
 document.addEventListener('keydown', (event) => {
   const { x, y } = ball.velocity;
+
   if (event.keyCode === 87) {
     Body.setVelocity(ball, { x, y: y - 5 });
   }
+
   if (event.keyCode === 68) {
     Body.setVelocity(ball, { x: x + 5, y });
   }
+
   if (event.keyCode === 83) {
     Body.setVelocity(ball, { x, y: y + 5 });
   }
+
   if (event.keyCode === 65) {
     Body.setVelocity(ball, { x: x - 5, y });
   }
 });
 
-// Win Condition
+//* Win Condition
 Events.on(engine, 'collisionStart', (event) => {
   event.pairs.forEach((collision) => {
     const labels = ['ball', 'goal'];
