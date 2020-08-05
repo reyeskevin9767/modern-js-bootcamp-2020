@@ -1,5 +1,5 @@
 class Timer {
-  //* Constructor takes DOM elements
+  // Constructor takes DOM elements
   constructor(durationInput, startButton, pauseButton, callbacks) {
     this.durationInput = durationInput;
     this.startButton = startButton;
@@ -11,12 +11,12 @@ class Timer {
       this.onComplete = callbacks.onComplete;
     }
 
-    //* Event Listeners
+    // Event Listeners
     this.startButton.addEventListener('click', this.start);
     this.pauseButton.addEventListener('click', this.pause);
   }
 
-  //* Starts the timer
+  // Starts the timer
   start = () => {
     if (this.onStart) {
       this.onStart(this.timeRemaining);
@@ -26,12 +26,12 @@ class Timer {
     this.interval = setInterval(this.tick, 20);
   };
 
-  //* Pauses the interval
+  // Pauses the interval
   pause = () => {
     clearInterval(this.interval);
   };
 
-  //* Responsible for the timer counting down
+  // Responsible for the timer counting down
   tick = () => {
     if (this.timeRemaining <= 0) {
       this.pause();
@@ -46,12 +46,12 @@ class Timer {
     }
   };
 
-  //* Instance variable to get input value
+  // Instance variable to get input value
   get timeRemaining() {
     return parseFloat(this.durationInput.value);
   }
 
-  //* Instance variable to set input value
+  // Instance variable to set input value
   set timeRemaining(time) {
     this.durationInput.value = time.toFixed(2);
   }

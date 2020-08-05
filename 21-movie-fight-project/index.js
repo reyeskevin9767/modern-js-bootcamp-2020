@@ -1,6 +1,6 @@
 //* Functions that don't change
 const autoCompleteConfig = {
-  //* Render the movie's basic info
+  // Render the movie's basic info
   renderOption(movie) {
     const imgSrc = movie.Poster === 'N/A' ? '' : movie.Poster;
     return `<img src="${imgSrc}" /> ${movie.Title} (${movie.Year})`;
@@ -9,7 +9,7 @@ const autoCompleteConfig = {
     return movie.Title;
   },
 
-  //* Fetch from the api, basic info of movie
+  // Fetch from the api, basic info of movie
   async fetchData(searchTerm) {
     const response = await axios.get('http://www.omdbapi.com/', {
       params: {
@@ -30,13 +30,13 @@ const autoCompleteConfig = {
 createAutoComplete({
   ...autoCompleteConfig,
 
-  //* Assign div with class to root
+  // Assign div with class to root
   root: document.querySelector('#left-autocomplete'),
 
   onOptionSelect(movie) {
     document.querySelector('.tutorial').classList.add('is-hidden');
 
-    //* Send another request to api
+    // Send another request to api
     onMovieSelect(movie, document.querySelector('#left-summary'), 'left');
   },
 });
@@ -45,20 +45,20 @@ createAutoComplete({
 createAutoComplete({
   ...autoCompleteConfig,
 
-  //* Assign div with class to root
+  // Assign div with class to root
   root: document.querySelector('#right-autocomplete'),
 
   onOptionSelect(movie) {
     document.querySelector('.tutorial').classList.add('is-hidden');
 
-    //* Send another request to api
+    // Send another request to api
     onMovieSelect(movie, document.querySelector('#right-summary'), 'right');
   },
 });
 
 let leftMovie;
 let rightMovie;
-//* Fetch from the api, more details about the movie
+// Fetch from the api, more details about the movie
 const onMovieSelect = async (movie, summaryElement, side) => {
   const response = await axios.get('http://www.omdbapi.com/', {
     params: {
