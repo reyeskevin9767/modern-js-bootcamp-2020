@@ -1,6 +1,7 @@
 const layout = require('../layout');
 const { getError } = require('../../helpers');
 
+//* HTML For Edit Products Route
 module.exports = ({ product, errors }) => {
   return layout({
     content: `
@@ -27,7 +28,7 @@ module.exports = ({ product, errors }) => {
             
             <div class="field">
               <label class="label">Image</label>            
-              <input type="file" name="image" />
+              <input type="file" name="image" aceept="image/*" />
             </div>
             <br />
             <button class="button is-primary">Edit</button>

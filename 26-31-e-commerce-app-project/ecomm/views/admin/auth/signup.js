@@ -1,6 +1,8 @@
+//* Html layout
 const layout = require('../layout');
 const { getError } = require('../../helpers');
 
+//* HTML of signup
 module.exports = ({ req, errors }) => {
   return layout({
     content: `

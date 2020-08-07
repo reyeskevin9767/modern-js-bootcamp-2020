@@ -1,5 +1,5 @@
 const layout = require('../layout');
-
+//* HTML For Products List
 module.exports = ({ products }) => {
   const renderedProducts = products
     .map((product) => {
@@ -15,9 +15,9 @@ module.exports = ({ products }) => {
           </a>
         </td>
         <td>
-        <form method="Post" action="/admin/products/${product.id}/delete">
-          <button class="button is-danger">Delete</button>
-        </form>
+          <form method="POST" action="/admin/products/${product.id}/delete">
+            <button class="button is-danger">Delete</button>
+          </form>
         </td>
       </tr>
     `;

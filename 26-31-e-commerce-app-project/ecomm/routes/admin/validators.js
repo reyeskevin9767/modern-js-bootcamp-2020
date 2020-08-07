@@ -2,15 +2,26 @@ const { check } = require('express-validator');
 const usersRepo = require('../../repositories/users');
 
 module.exports = {
+  // Assign Sanitization and Validation
+  // Each Validation results in a function
   requireTitle: check('title')
     .trim()
     .isLength({ min: 5, max: 40 })
-    .withMessage('Must Be Between 5 And 40 Characters'),
+    .withMessage('Must be between 5 and 40 characters'),
   requirePrice: check('price')
     .trim()
     .toFloat()
     .isFloat({ min: 1 })
-    .withMessage('Must Be Greater Than 1'),
+    .withMessage('Must be greater than 1'),
+  requireImage: check('image').custom((image, { req }) => {
+    const file = req.file;
+    if (!file) {
+      throw new Error('Please upload file');
+    }
+    return (req, res, next) => {
+      next();
+    };
+  }),
   requireEmail: check('email')
     .trim()
     .normalizeEmail()
@@ -18,6 +29,7 @@ module.exports = {
     .withMessage('Must Be A Valid Email')
     .custom(async (email) => {
       const existingUser = await usersRepo.getOneBy({ email });
+
       if (existingUser) {
         throw new Error('Email In Use');
       }
@@ -25,16 +37,17 @@ module.exports = {
   requirePassword: check('password')
     .trim()
     .isLength({ min: 4, max: 20 })
-    .withMessage('Must Be Between 4 And 20 Characters'),
-  requirePasswordConfirmation: check('passwordConfirmation')
-    .trim()
-    .isLength({ min: 4, max: 20 })
-    .withMessage('Must Be Between 4 And 20 Characters')
-    .custom(async (passwordConfirmation, { req }) => {
+    .withMessage('Must be between 4 and 20 characters')
+    .custom((passwordConfirmation, { req }) => {
       if (passwordConfirmation !== req.body.password) {
         throw new Error('Passwords Must Match');
       }
+      return true;
     }),
+  requirePasswordConfirmation: check('passwordConfirmation')
+    .trim()
+    .isLength({ min: 4, max: 20 })
+    .withMessage('Must be between 4 and 20 characters'),
   requireEmailExists: check('email')
     .trim()
     .normalizeEmail()
@@ -43,15 +56,13 @@ module.exports = {
     .custom(async (email) => {
       const user = await usersRepo.getOneBy({ email });
       if (!user) {
-        throw new Error('Email Not Found');
+        throw new Error('Email Not Found!');
       }
     }),
   requireValidPasswordForUser: check('password')
     .trim()
     .custom(async (password, { req }) => {
-      const user = await usersRepo.getOneBy({
-        email: req.body.email,
-      });
+      const user = await usersRepo.getOneBy({ email: req.body.email });
       if (!user) {
         throw new Error('Invalid Password');
       }
