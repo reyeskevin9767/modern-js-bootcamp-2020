@@ -12,9 +12,9 @@ const autoCompleteConfig = {
   async fetchData(searchTerm) {
     const response = await axios.get('http://www.omdbapi.com/', {
       params: {
-        apikey: '2b644ca2',
-        s: searchTerm,
-      },
+        apikey: 'd9835cc5',
+        s: searchTerm
+      }
     });
 
     if (response.data.Error) {
@@ -22,7 +22,7 @@ const autoCompleteConfig = {
     }
 
     return response.data.Search;
-  },
+  }
 };
 
 createAutoComplete({
@@ -31,7 +31,7 @@ createAutoComplete({
   onOptionSelect(movie) {
     document.querySelector('.tutorial').classList.add('is-hidden');
     onMovieSelect(movie, document.querySelector('#left-summary'), 'left');
-  },
+  }
 });
 createAutoComplete({
   ...autoCompleteConfig,
@@ -39,7 +39,7 @@ createAutoComplete({
   onOptionSelect(movie) {
     document.querySelector('.tutorial').classList.add('is-hidden');
     onMovieSelect(movie, document.querySelector('#right-summary'), 'right');
-  },
+  }
 });
 
 let leftMovie;
@@ -47,9 +47,9 @@ let rightMovie;
 const onMovieSelect = async (movie, summaryElement, side) => {
   const response = await axios.get('http://www.omdbapi.com/', {
     params: {
-      apikey: '2b644ca2',
-      i: movie.imdbID,
-    },
+      apikey: 'd9835cc5',
+      i: movie.imdbID
+    }
   });
 
   summaryElement.innerHTML = movieTemplate(response.data);
@@ -89,7 +89,7 @@ const runComparison = () => {
   });
 };
 
-const movieTemplate = (movieDetail) => {
+const movieTemplate = movieDetail => {
   const dollars = parseInt(
     movieDetail.BoxOffice.replace(/\$/g, '').replace(/,/g, '')
   );
