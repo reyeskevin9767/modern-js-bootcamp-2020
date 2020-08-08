@@ -1,6 +1,7 @@
 const assert = require('assert');
 const { forEach, map } = require('./index');
 
+//* Reaplaced with mocha
 // const test = (desc, fn) => {
 //   console.log('----', desc);
 //   try {
@@ -10,13 +11,13 @@ const { forEach, map } = require('./index');
 //   }
 // };
 
-it('The ForEach Function', () => {
+it('The forEach function', () => {
   let sum = 0;
   forEach([1, 2, 3], (value) => {
     sum += value;
   });
 
-  assert.strictEqual(sum, 6, 'Exprected forEach to sum the array');
+  assert.strictEqual(sum, 6, 'Expected forEach to sum the array');
 });
 
 it('The Map Function', () => {
@@ -26,3 +27,8 @@ it('The Map Function', () => {
 
   assert.deepStrictEqual(result, [2, 4, 6]);
 });
+
+//* 3 Issues without test function
+//* 1. One Test Fail Will Stop All Tests
+//* 2. Difficult to find the exact test that caused error
+//* 3. Variables are scopre to file
